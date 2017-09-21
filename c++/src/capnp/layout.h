@@ -126,7 +126,7 @@ template <> struct ElementSizeForType<Void> { static constexpr ElementSize value
 template <> struct ElementSizeForType<bool> { static constexpr ElementSize value = ElementSize::BIT; };
 
 // Lists and blobs are pointers, not structs.
-template <typename T, bool b> struct ElementSizeForType<List<T, b>> {
+template <typename T, Kind b> struct ElementSizeForType<List<T, b>> {
   static constexpr ElementSize value = ElementSize::POINTER;
 };
 template <> struct ElementSizeForType<Text> {
