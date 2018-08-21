@@ -141,6 +141,8 @@ private:
   bool allocatedArena;
 
   _::ReaderArena* arena() { return reinterpret_cast<_::ReaderArena*>(arenaSpace); }
+    
+public:
   AnyPointer::Reader getRootInternal();
 };
 
