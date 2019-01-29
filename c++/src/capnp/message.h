@@ -339,7 +339,7 @@ enum class AllocationStrategy: uint8_t {
   // allocated for a message of size n is O(log n).
 };
 
-constexpr uint SUGGESTED_FIRST_SEGMENT_WORDS = 8192;
+constexpr uint SUGGESTED_FIRST_SEGMENT_WORDS = 1024;
 constexpr AllocationStrategy SUGGESTED_ALLOCATION_STRATEGY = AllocationStrategy::GROW_HEURISTICALLY;
 
 class MallocMessageBuilder: public MessageBuilder {
