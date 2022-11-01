@@ -1199,7 +1199,7 @@ public:
     CliArgumentErrorReporter errorReporter;
 
     capnp::MallocMessageBuilder tokenArena;
-    auto lexedTokens = tokenArena.initRoot<capnp::compiler::LexedTokens>();
+    auto lexedTokens = tokenArena.initRoot<::capnp::compiler::LexedTokens>();
     lex(input, lexedTokens, errorReporter);
 
     CapnpParser parser(tokenArena.getOrphanage(), errorReporter);

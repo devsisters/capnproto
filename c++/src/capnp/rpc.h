@@ -236,7 +236,7 @@ class SturdyRefRestorer: public _::SturdyRefRestorerBase {
   // "bootstrap interface". That interface can itself have methods for obtaining other objects, of
   // course, but that is up to the app. `SturdyRefRestorer` exists for backwards-compatibility.
   //
-  // Hint:  Use SturdyRefRestorer<capnp::Text> to define a server that exports services under
+  // Hint:  Use SturdyRefRestorer<::capnp::Text> to define a server that exports services under
   //   string names.
 
 public:

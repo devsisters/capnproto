@@ -92,7 +92,7 @@ kj::Array<word> messageToFlatArray(MessageBuilder& builder);
 // `asBytes()` returns an ArrayPtr, so you have to save the Array as well to prevent it from being
 // deleted. For example:
 //
-//     kj::Array<capnp::word> words = messageToFlatArray(myMessage);
+//     kj::Array<::capnp::word> words = messageToFlatArray(myMessage);
 //     kj::ArrayPtr<kj::byte> bytes = words.asBytes();
 //     write(fd, bytes.begin(), bytes.size());
 

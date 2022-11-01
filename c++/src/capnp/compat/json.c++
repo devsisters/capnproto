@@ -290,7 +290,7 @@ void JsonCodec::encode(DynamicValue::Reader input, Type type, JsonValue::Builder
       break;
     }
     case schema::Type::STRUCT: {
-      auto structValue = input.as<capnp::DynamicStruct>();
+      auto structValue = input.as<::capnp::DynamicStruct>();
       auto nonUnionFields = structValue.getSchema().getNonUnionFields();
 
       KJ_STACK_ARRAY(bool, hasField, nonUnionFields.size(), 32, 128);
@@ -886,25 +886,25 @@ static constexpr uint64_t JSON_DISCRIMINATOR_ANNOTATION_ID = 0xcfa794e8d19a0162u
 static constexpr uint64_t JSON_BASE64_ANNOTATION_ID = 0xd7d879450a253e4bull;
 static constexpr uint64_t JSON_HEX_ANNOTATION_ID = 0xf061e22f0ae5c7b5ull;
 
-class JsonCodec::Base64Handler final: public JsonCodec::Handler<capnp::Data> {
+class JsonCodec::Base64Handler final: public JsonCodec::Handler<::capnp::Data> {
 public:
   void encode(const JsonCodec& codec, capnp::Data::Reader input, JsonValue::Builder output) const {
     output.setString(kj::encodeBase64(input));
   }
 
-  Orphan<capnp::Data> decode(const JsonCodec& codec, JsonValue::Reader input,
+  Orphan<::capnp::Data> decode(const JsonCodec& codec, JsonValue::Reader input,
                              Orphanage orphanage) const {
     return orphanage.newOrphanCopy(capnp::Data::Reader(kj::decodeBase64(input.getString())));
   }
 };
 
-class JsonCodec::HexHandler final: public JsonCodec::Handler<capnp::Data> {
+class JsonCodec::HexHandler final: public JsonCodec::Handler<::capnp::Data> {
 public:
   void encode(const JsonCodec& codec, capnp::Data::Reader input, JsonValue::Builder output) const {
     output.setString(kj::encodeHex(input));
   }
 
-  Orphan<capnp::Data> decode(const JsonCodec& codec, JsonValue::Reader input,
+  Orphan<::capnp::Data> decode(const JsonCodec& codec, JsonValue::Reader input,
                              Orphanage orphanage) const {
     return orphanage.newOrphanCopy(capnp::Data::Reader(kj::decodeHex(input.getString())));
   }

@@ -532,7 +532,7 @@ namespace _ {
 template <typename Reader, typename>
 kj::Own<kj::Decay<Reader>> clone(Reader&& reader) {
   auto size = reader.totalSize();
-  auto buffer = kj::heapArray<capnp::word>(size.wordCount + 1);
+  auto buffer = kj::heapArray<::capnp::word>(size.wordCount + 1);
   memset(buffer.asBytes().begin(), 0, buffer.asBytes().size());
   if (size.capCount == 0) {
     copyToUnchecked(reader, buffer);

@@ -44,7 +44,7 @@ kj::Promise<kj::Maybe<MessageReaderAndFds>> WebSocketMessageStream::tryReadMessa
           break;
         }
         KJ_CASE_ONEOF(bytes, kj::Array<byte>) {
-          kj::Own<capnp::MessageReader> reader;
+          kj::Own<::capnp::MessageReader> reader;
           size_t sizeInWords = bytes.size() / sizeof(word);
           if (reinterpret_cast<uintptr_t>(bytes.begin()) % alignof(word) == 0) {
             reader = kj::heap<FlatArrayMessageReader>(

@@ -64,7 +64,7 @@ private:
 class ExternalResolver final: public capnp::compiler::ValueTranslator::Resolver {
   // Throws all external resolution requests as assertion failures.
 public:
-  kj::Maybe<capnp::DynamicValue::Reader>
+  kj::Maybe<::capnp::DynamicValue::Reader>
   resolveConstant(capnp::compiler::Expression::Reader name) override {
     KJ_FAIL_REQUIRE("External constants not allowed.");
   }
@@ -82,7 +82,7 @@ void lexAndParseExpression(kj::StringPtr input, Function f) {
   ThrowingErrorReporter errorReporter(input);
 
   capnp::MallocMessageBuilder tokenArena;
-  auto lexedTokens = tokenArena.initRoot<capnp::compiler::LexedTokens>();
+  auto lexedTokens = tokenArena.initRoot<::capnp::compiler::LexedTokens>();
   capnp::compiler::lex(input, lexedTokens, errorReporter);
 
   capnp::compiler::CapnpParser parser(tokenArena.getOrphanage(), errorReporter);
