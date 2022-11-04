@@ -74,3 +74,4 @@
 
 # editor artefacts
 *~
+.DS_Store
