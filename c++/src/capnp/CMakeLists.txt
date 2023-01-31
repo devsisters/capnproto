@@ -184,8 +184,8 @@ if(NOT CAPNP_LITE)
     compiler/capnp.c++
   )
   target_link_libraries(capnp_tool capnpc capnp-json capnp kj)
-  # set_target_properties(capnp_tool PROPERTIES OUTPUT_NAME capnp)
-  # set_target_properties(capnp_tool PROPERTIES CAPNP_INCLUDE_DIRECTORY
+  set_target_properties(capnp_tool PROPERTIES OUTPUT_NAME capnp)
+  set_target_properties(capnp_tool PROPERTIES CAPNP_INCLUDE_DIRECTORY
     $<JOIN:$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>,$<INSTALL_INTERFACE:${CMAKE_INSTALL_BINDIR}/..>>
   )
   target_compile_definitions(capnp_tool PRIVATE
@@ -197,10 +197,10 @@ if(NOT CAPNP_LITE)
     compiler/capnpc-c++.c++
   )
   target_link_libraries(capnpc_cpp capnp kj)
-  # set_target_properties(capnpc_cpp PROPERTIES OUTPUT_NAME capnpc-c++)
+  set_target_properties(capnpc_cpp PROPERTIES OUTPUT_NAME capnpc-c++)
   #Capnp tool needs capnpc_cpp location. But cmake deprecated LOCATION property.
   #So we use custom property to pass location
-  # set_target_properties(capnpc_cpp PROPERTIES CAPNPC_CXX_EXECUTABLE
+  set_target_properties(capnpc_cpp PROPERTIES CAPNPC_CXX_EXECUTABLE
     $<TARGET_FILE:capnpc_cpp>
   )
 
@@ -208,7 +208,7 @@ if(NOT CAPNP_LITE)
     compiler/capnpc-capnp.c++
   )
   target_link_libraries(capnpc_capnp capnp kj)
-  # set_target_properties(capnpc_capnp PROPERTIES OUTPUT_NAME capnpc-capnp)
+  set_target_properties(capnpc_capnp PROPERTIES OUTPUT_NAME capnpc-capnp)
 
   install(TARGETS capnp_tool capnpc_cpp capnpc_capnp ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -303,7 +303,7 @@ if(BUILD_TESTING)
     )
     target_link_libraries(capnp-heavy-tests ${test_libraries})
     if(NOT MSVC)
-      # set_target_properties(capnp-heavy-tests
+      set_target_properties(capnp-heavy-tests
         PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
       )
     endif()
