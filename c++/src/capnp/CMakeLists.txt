@@ -72,7 +72,7 @@ target_include_directories(capnp INTERFACE
   $<INSTALL_INTERFACE:include>
 )
 # Ensure the library has a version set to match autotools build
-set_target_properties(capnp PROPERTIES VERSION ${VERSION})
+# set_target_properties(capnp PROPERTIES VERSION ${VERSION})
 install(TARGETS capnp ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${capnp_headers} ${capnp_schemas} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/capnp")
 install(FILES ${capnp_compat_headers} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/capnp/compat")
@@ -108,7 +108,7 @@ if(NOT CAPNP_LITE)
   add_library(CapnProto::capnp-rpc ALIAS capnp-rpc)
   target_link_libraries(capnp-rpc PUBLIC capnp kj-async kj)
   # Ensure the library has a version set to match autotools build
-  set_target_properties(capnp-rpc PROPERTIES VERSION ${VERSION})
+  # set_target_properties(capnp-rpc PROPERTIES VERSION ${VERSION})
   install(TARGETS capnp-rpc ${INSTALL_TARGETS_DEFAULT_ARGS})
   install(FILES ${capnp-rpc_headers} ${capnp-rpc_schemas} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/capnp")
 endif()
@@ -131,7 +131,7 @@ if(NOT CAPNP_LITE)
   add_library(CapnProto::capnp-json ALIAS capnp-json)
   target_link_libraries(capnp-json PUBLIC capnp kj-async kj)
   # Ensure the library has a version set to match autotools build
-  set_target_properties(capnp-json PROPERTIES VERSION ${VERSION})
+  # set_target_properties(capnp-json PROPERTIES VERSION ${VERSION})
   install(TARGETS capnp-json ${INSTALL_TARGETS_DEFAULT_ARGS})
   install(FILES ${capnp-json_headers} ${capnp-json_schemas} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/capnp/compat")
 endif()
@@ -149,7 +149,7 @@ if(NOT CAPNP_LITE)
   add_library(CapnProto::capnp-websocket ALIAS capnp-websocket)
   target_link_libraries(capnp-websocket PUBLIC capnp capnp-rpc kj-http kj-async kj)
   # Ensure the library has a version set to match autotools build
-  set_target_properties(capnp-websocket PROPERTIES VERSION ${VERSION})
+  # set_target_properties(capnp-websocket PROPERTIES VERSION ${VERSION})
   install(TARGETS capnp-websocket ${INSTALL_TARGETS_DEFAULT_ARGS})
   install(FILES ${capnp-websocket_headers} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/capnp/compat")
 endif()
@@ -173,7 +173,7 @@ if(NOT CAPNP_LITE)
   add_library(capnpc ${capnpc_sources})
   target_link_libraries(capnpc PUBLIC capnp kj)
   # Ensure the library has a version set to match autotools build
-  set_target_properties(capnpc PROPERTIES VERSION ${VERSION})
+  # set_target_properties(capnpc PROPERTIES VERSION ${VERSION})
   install(TARGETS capnpc ${INSTALL_TARGETS_DEFAULT_ARGS})
   install(FILES ${capnpc_headers} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/capnp")
 endif()
@@ -184,8 +184,8 @@ if(NOT CAPNP_LITE)
     compiler/capnp.c++
   )
   target_link_libraries(capnp_tool capnpc capnp-json capnp kj)
-  set_target_properties(capnp_tool PROPERTIES OUTPUT_NAME capnp)
-  set_target_properties(capnp_tool PROPERTIES CAPNP_INCLUDE_DIRECTORY
+  # set_target_properties(capnp_tool PROPERTIES OUTPUT_NAME capnp)
+  # set_target_properties(capnp_tool PROPERTIES CAPNP_INCLUDE_DIRECTORY
     $<JOIN:$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>,$<INSTALL_INTERFACE:${CMAKE_INSTALL_BINDIR}/..>>
   )
   target_compile_definitions(capnp_tool PRIVATE
@@ -197,10 +197,10 @@ if(NOT CAPNP_LITE)
     compiler/capnpc-c++.c++
   )
   target_link_libraries(capnpc_cpp capnp kj)
-  set_target_properties(capnpc_cpp PROPERTIES OUTPUT_NAME capnpc-c++)
+  # set_target_properties(capnpc_cpp PROPERTIES OUTPUT_NAME capnpc-c++)
   #Capnp tool needs capnpc_cpp location. But cmake deprecated LOCATION property.
   #So we use custom property to pass location
-  set_target_properties(capnpc_cpp PROPERTIES CAPNPC_CXX_EXECUTABLE
+  # set_target_properties(capnpc_cpp PROPERTIES CAPNPC_CXX_EXECUTABLE
     $<TARGET_FILE:capnpc_cpp>
   )
 
@@ -208,7 +208,7 @@ if(NOT CAPNP_LITE)
     compiler/capnpc-capnp.c++
   )
   target_link_libraries(capnpc_capnp capnp kj)
-  set_target_properties(capnpc_capnp PROPERTIES OUTPUT_NAME capnpc-capnp)
+  # set_target_properties(capnpc_capnp PROPERTIES OUTPUT_NAME capnpc-capnp)
 
   install(TARGETS capnp_tool capnpc_cpp capnpc_capnp ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -303,7 +303,7 @@ if(BUILD_TESTING)
     )
     target_link_libraries(capnp-heavy-tests ${test_libraries})
     if(NOT MSVC)
-      set_target_properties(capnp-heavy-tests
+      # set_target_properties(capnp-heavy-tests
         PROPERTIES COMPILE_FLAGS "-Wno-deprecated-declarations"
       )
     endif()
