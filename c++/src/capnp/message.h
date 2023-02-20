@@ -137,7 +137,7 @@ private:
   // because we don't want clients to have to #include arena.h, which itself includes a bunch of
   // other headers.  We don't use a pointer to a ReaderArena because that would require an
   // extra malloc on every message which could be expensive when processing small messages.
-  alignas(8) void* arenaSpace[arenaSpacePadding + sizeof(kj::MutexGuarded<void*>) / sizeof(void*)];
+  alignas(8) void* arenaSpace[19 + sizeof(kj::MutexGuarded<void*>) / sizeof(void*)];
   bool allocatedArena;
 
   _::ReaderArena* arena() { return reinterpret_cast<_::ReaderArena*>(arenaSpace); }
