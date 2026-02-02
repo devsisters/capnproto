@@ -1,6 +1,11 @@
 
 # capnp ========================================================================
 
+# 원래 프로젝트에서는 capnproto/c++/CMakeLists.txt에서 VERSION을 세팅해주지만
+# gb-client 빌드시에는 상위 폴더를 건너뛰고 capnproto/c++/src/CMakeList.txt부터 빌드하기 때문에 해당 propoerty가 정의되지 않은 상태라 여기서 따로 정의해준다.
+# 라이브러리 업데이트 시 해당 부분도 맞는 버전으로 대응 요망
+set(VERSION 1.3.0)
+
 set(capnp_sources_lite
   c++.capnp.c++
   blob.c++
