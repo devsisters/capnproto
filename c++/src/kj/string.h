@@ -25,6 +25,7 @@
 #include "array.h"
 #include "kj/common.h"
 #include <string.h>
+#include <string_view>
 
 KJ_BEGIN_HEADER
 
@@ -128,6 +129,7 @@ public:
   // Result does not include NUL terminator.
 
   inline char operator[](size_t index) const { return content[index]; }
+  inline operator std::string_view() const noexcept { return std::string_view(content.begin(), size()); }
 
   inline constexpr const char* begin() const { return content.begin(); }
   inline constexpr const char* end() const { return content.end() - 1; }
